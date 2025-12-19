@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChediX Code Price Calculator</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+        background: #0d6efd;
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    header img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    header h1 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    /* MAIN */
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .calculator {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        width: 330px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .calculator h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px;
+        border: none;
+        background: #0d6efd;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #084298;
+    }
+
+    .result {
+        margin-top: 15px;
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+    }
+
+    /* FOOTER */
+    footer {
+        background: #212529;
+        color: #ccc;
+        text-align: center;
+        padding: 12px;
+        font-size: 13px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.jpg" alt="Logo">
+    <h1>ChediX</h1>
+</header>
+
+<main>
+    <div class="calculator">
+        <h2>Code Price Calculator</h2>
+
+        <label>Number of Weeks</label>
+        <input type="number" id="weeks" placeholder="e.g. 7">
+
+        <label>Days per Week</label>
+        <input type="number" id="days" placeholder="e.g. 5">
+
+        <label>Hours per Day</label>
+        <input type="number" id="hours" placeholder="e.g. 7">
+
+        <label>Hourly Rate ($)</label>
+        <input type="number" id="rate" placeholder="e.g. 50">
+
+        <button onclick="calculatePrice()">Calculate Price</button>
+
+        <div class="result" id="result"></div>
+    </div>
+</main>
+
+<footer>
+    © 2026 ChediX — Code Pricing Calculator
+</footer>
+
+<script>
+function calculatePrice() {
+    const weeks = document.getElementById("weeks").value;
+    const days = document.getElementById("days").value;
+    const hours = document.getElementById("hours").value;
+    const rate = document.getElementById("rate").value;
+
+    if (!weeks || !days || !hours || !rate) {
+        document.getElementById("result").innerHTML = "Please fill in all fields.";
+        return;
+    }
+
+    const totalHours = weeks * days * hours;
+    const price = totalHours * rate;
+
+    document.getElementById("result").innerHTML =
+        "Total Hours: " + totalHours +
+        "<br>Estimated Price: $" + price.toLocaleString();
+}
+</script>
+
+</body>
+</html>
